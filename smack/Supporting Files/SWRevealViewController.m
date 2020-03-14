@@ -663,7 +663,7 @@ const int FrontViewPositionNone = 0xff;
     _frontViewShadowRadius = 2.5f;
     _frontViewShadowOffset = CGSizeMake(0.0f, 2.5f);
     _frontViewShadowOpacity = 1.0f;
-    _frontViewShadowColor = [UIColor blackColor];
+    _frontViewShadowColor = [UIColor blueColor];
     _userInteractionStore = YES;
     _animationQueue = [NSMutableArray array];
     _draggableBorderWidth = 0.0f;
@@ -1463,13 +1463,13 @@ const int FrontViewPositionNone = 0xff;
     else if ( operation == SWRevealControllerOperationReplaceRightController )
         old = _rightViewController, _rightViewController = new, view = _contentView.rightView;
 
-    void (^completion)() = [self _transitionFromViewController:old toViewController:new inView:view];
+    void (^completion)(void) = [self _transitionFromViewController:old toViewController:new inView:view];
     
-    void (^animationCompletion)() = ^
+    void (^animationCompletion)(void) = ^
     {
         completion();
-        if ( [_delegate respondsToSelector:@selector(revealController:didAddViewController:forOperation:animated:)] )
-            [_delegate revealController:self didAddViewController:new forOperation:operation animated:animated];
+        if ( [self->_delegate respondsToSelector:@selector(revealController:didAddViewController:forOperation:animated:)] )
+            [self->_delegate revealController:self didAddViewController:new forOperation:operation animated:animated];
     
         [self _dequeue];
     };
@@ -1672,11 +1672,11 @@ const int FrontViewPositionNone = 0xff;
     
     if ( toController ) [self addChildViewController:toController];
     
-    void (^deployCompletion)() = [self _deployForViewController:toController inView:view];
+    void (^deployCompletion)(void) = [self _deployForViewController:toController inView:view];
     
     [fromController willMoveToParentViewController:nil];
     
-    void (^undeployCompletion)() = [self _undeployForViewController:fromController];
+    void (^undeployCompletion)(void) = [self _undeployForViewController:fromController];
     
     void (^completionBlock)(void) = ^(void)
     {

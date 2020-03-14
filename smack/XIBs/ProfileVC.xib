@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Bold</string>
-            <string>HelveticaNeue-Medium</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="smack" customModuleProvider="target">
             <connections>
+                <outlet property="bgView" destination="TO0-HX-P1D" id="XST-ae-qhE"/>
+                <outlet property="profileImg" destination="Pu4-dT-YmF" id="avg-YB-EHl"/>
+                <outlet property="userEmail" destination="PsV-f6-ufu" id="WzI-l0-koR"/>
+                <outlet property="userName" destination="4Kl-Gs-pkg" id="gPA-OR-OIC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" alpha="0.40000000000000002" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO0-HX-P1D" userLabel="bgView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="QLe-qF-3HW"/>
+                </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lut-6t-9WI">
                     <rect key="frame" x="20" y="173.5" width="335" height="320"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCG-Cj-I3H">
                             <rect key="frame" x="299" y="8" width="28" height="28"/>
                             <state key="normal" image="closeButton"/>
+                            <connections>
+                                <action selector="closeModalPressed:" destination="-1" eventType="touchUpInside" id="ljC-60-OF5"/>
+                            </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ucO-YS-6if">
-                            <rect key="frame" x="109.5" y="54.5" width="116" height="171.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ucO-YS-6if">
+                            <rect key="frame" x="109.5" y="32" width="116" height="216.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rB-SV-CgC">
                                     <rect key="frame" x="0.0" y="0.0" width="116" height="25.5"/>
@@ -43,22 +49,22 @@
                                     <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Pu4-dT-YmF">
-                                    <rect key="frame" x="8" y="25.5" width="100" height="100"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Pu4-dT-YmF" customClass="CircleImage" customModule="smack" customModuleProvider="target">
+                                    <rect key="frame" x="8" y="40.5" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="KrM-HA-kUM"/>
                                         <constraint firstAttribute="width" constant="100" id="LUl-fo-UOn"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biasi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kl-Gs-pkg">
-                                    <rect key="frame" x="37.5" y="125.5" width="41.5" height="23"/>
+                                    <rect key="frame" x="37.5" y="155.5" width="41.5" height="23"/>
                                     <color key="tintColor" red="0.35527311833055558" green="0.16882276346666666" blue="0.72043121933333332" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                     <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biasi@b.b" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsV-f6-ufu">
-                                    <rect key="frame" x="15.5" y="148.5" width="85" height="23"/>
+                                    <rect key="frame" x="15.5" y="193.5" width="85" height="23"/>
                                     <color key="tintColor" red="0.35527311833055558" green="0.16882276346666666" blue="0.72043121933333332" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                     <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -73,6 +79,9 @@
                             <state key="normal" title="Logout">
                                 <color key="titleColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="logoutPressed:" destination="-1" eventType="touchUpInside" id="zeG-Ie-aDM"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,11 +97,14 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="TO0-HX-P1D" secondAttribute="top" constant="20" id="Dni-0I-AoI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TO0-HX-P1D" secondAttribute="bottom" id="RmW-tS-FFb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lut-6t-9WI" secondAttribute="trailing" constant="20" id="ZxA-Rc-rfz"/>
+                <constraint firstItem="TO0-HX-P1D" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gPN-My-5Ot"/>
                 <constraint firstItem="lut-6t-9WI" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uTM-ia-Mhs"/>
                 <constraint firstItem="lut-6t-9WI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yM6-ha-Jm5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TO0-HX-P1D" secondAttribute="trailing" id="zG5-xV-dxM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>

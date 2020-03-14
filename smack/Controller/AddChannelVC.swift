@@ -10,26 +10,57 @@ import UIKit
 
 class AddChannelVC: UIViewController {
 
+
+    @IBOutlet weak var nameTxt: UITextField!
+    
+    @IBOutlet weak var chanDesc: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setupView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var bgView: UIView!
+    
+    @IBAction func closeModelPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
+   
+    @IBAction func createChannelPressed(_ sender: Any) {
+        
+        guard let channelName = nameTxt.text , nameTxt.text != "" else {return}
+//        channelName = String(channelName)
+        guard let channelDesc = chanDesc.text , chanDesc.text != "" else {return}
+//        channelDesc = String(channelDesc)
+        SocketService.instance.addChannel(channelName: channelName, channelDiscription: channelDesc) { (success) in
+            if success {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
 
+    }
+    
+    func setupView(){
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddChannelVC.closeTap(_:)))
+        bgView.addGestureRecognizer(closeTouch)
+        
+        nameTxt.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSAttributedStringKey.foregroundColor : smackPurpleColor])
+        
+          chanDesc.attributedPlaceholder = NSAttributedString(string: "description", attributes: [NSAttributedStringKey.foregroundColor : smackPurpleColor])
+        
+        
+        
+        
+    }
+    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer){
+        dismiss(animated: true, completion: nil )
+    }
+    
+    
+    
+    
+    
+    
+    
 }
